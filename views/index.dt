@@ -1,0 +1,6 @@
+doctype 5
+html
+  head
+    title #{GLOBALS.WebsiteName}
+  body
+    h1 #{ctx.heading}

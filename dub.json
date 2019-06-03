@@ -1,0 +1,12 @@
+{
+	"authors": [
+		"fxcqz"
+	],
+	"copyright": "Copyright © 2019, fxcqz",
+	"dependencies": {
+		"diet-ng": "~>1.5.0"
+	},
+	"description": "b5.re website generator",
+	"license": "proprietary",
+	"name": "b5"
+}
