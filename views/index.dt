@@ -4,3 +4,8 @@ html
     title #{GLOBALS.WebsiteName}
   body
     h1 #{ctx.heading}
+    h2 Posts
+    - foreach (post; ctx.posts)
+      ul
+        li
+          a(href="#{post.url}") #{post.obj.title}
