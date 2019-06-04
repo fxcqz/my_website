@@ -1,7 +1,11 @@
+- void css(string file)
+  link(rel='stylesheet', type='text/css', href='css/#{file}.css')
+
 doctype 5
 html
   head
     title #{GLOBALS.WebsiteName}
+    - css("main");
   body
     h1 #{ctx.heading}
     h2 Posts

@@ -99,6 +99,19 @@ void write_file(T, string TemplateFile)(string src_path)
   }
 }
 
+void write_static()
+{
+  import std.file : copy, exists, mkdirRecurse;
+  import std.path : buildPath, dirName;
+
+  string src_css_path = buildPath(SOURCEPATH, "css", "main.css");
+  if (src_css_path.exists) {
+    string target_css_path = buildPath(TARGETPATH, "css", "main.css");
+    mkdirRecurse(dirName(target_css_path));
+    copy(src_css_path, target_css_path);
+  }
+}
+
 void main(string[] args)
 {
   import std.file : exists, mkdir;
@@ -118,4 +131,6 @@ void main(string[] args)
   }
 
   write_file!(Index, "index.dt")(make_basepath("index.txt"));
+
+  write_static();
 }
