@@ -7,6 +7,7 @@ import diet.html;
 // TODO add cool links
 // TODO sort posts by date modified and add that to post content
 // TODO add overflow-y to styling for some sections on index (??)
+// TODO support code markup
 
 static immutable string SOURCEPATH = "content/";
 static immutable string TARGETPATH = "build/";
@@ -104,14 +105,23 @@ void write_file(T, string TemplateFile)(string src_path)
 
 void write_static()
 {
-  import std.file : copy, exists, mkdirRecurse;
-  import std.path : buildPath, dirName;
+  import std.file : copy, dirEntries, exists, mkdirRecurse, SpanMode;
+  import std.path : baseName, buildPath, dirName;
 
   string src_css_path = buildPath(SOURCEPATH, "css", "main.css");
   if (src_css_path.exists) {
     string target_css_path = buildPath(TARGETPATH, "css", "main.css");
     mkdirRecurse(dirName(target_css_path));
     copy(src_css_path, target_css_path);
+  }
+
+  string src_img_path = buildPath(SOURCEPATH, "images");
+  if (src_img_path.exists) {
+    string target_img_path = buildPath(TARGETPATH, "images");
+    mkdirRecurse(target_img_path);
+    foreach (img; src_img_path.dirEntries(SpanMode.breadth)) {
+      copy(img, buildPath(target_img_path, baseName(img)));
+    }
   }
 }
 
@@ -127,13 +137,10 @@ void main(string[] args)
     TARGETPATH.mkdir;
   }
 
-  string[] posts = get_posts(make_basepath("posts/"));
-
-  foreach (post; posts) {
+  foreach (post; get_posts(make_basepath("posts/"))) {
     write_file!(Post, "post.dt")(post);
   }
 
   write_file!(Index, "index.dt")(make_basepath("index.txt"));
-
   write_static();
 }

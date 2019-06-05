@@ -1,6 +1,9 @@
 - void css(string file)
   link(rel='stylesheet', type='text/css', href='#{file}')
 
+- void favicon(string file)
+  link(rel='shortcut icon', type='image/png', href='#{file}')
+
 doctype 5
 html
   head

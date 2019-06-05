@@ -2,6 +2,7 @@ extends layout
 
 block styling
   - css("../css/main.css");
+  - favicon("../images/favicon.png");
 
 block body
   #main-1-col
