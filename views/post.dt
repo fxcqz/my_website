@@ -4,9 +4,10 @@ block styling
   - css("../css/main.css");
 
 block body
-  h1 #{ctx.title}
-  article
-    - foreach (line; ctx.content)
-      p #{line}
-  p
-    a(href="../index.html") Back home
+  #main-1-col
+    h2 #{ctx.title}
+    article
+      - foreach (line; ctx.content)
+        p #{line}
+    p
+      a(href="../index.html") Back home
