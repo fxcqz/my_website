@@ -3,7 +3,10 @@ import std.stdio;
 import diet.html;
 
 // TODO load globals from file
-// TODO add styling
+// TODO add bird log
+// TODO add cool links
+// TODO sort posts by date modified and add that to post content
+// TODO add overflow-y to styling for some sections on index (??)
 
 static immutable string SOURCEPATH = "content/";
 static immutable string TARGETPATH = "build/";
