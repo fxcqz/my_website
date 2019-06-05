@@ -1,15 +1,11 @@
-- void css(string file)
-  link(rel='stylesheet', type='text/css', href='css/#{file}.css')
+extends layout
 
-doctype 5
-html
-  head
-    title #{GLOBALS.WebsiteName}
-    - css("main");
-  body
-    h1 #{ctx.heading}
-    h2 Posts
-    - foreach (post; ctx.posts)
-      ul
-        li
-          a(href="#{post.url}") #{post.obj.title}
+block styling
+  - css("css/main.css");
+
+block body
+  h2 Posts
+  - foreach (post; ctx.posts)
+    ul
+      li
+        a(href="#{post.url}") #{post.obj.title}

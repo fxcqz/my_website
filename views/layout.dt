@@ -1,0 +1,14 @@
+- void css(string file)
+  link(rel='stylesheet', type='text/css', href='#{file}')
+
+doctype 5
+html
+  head
+    meta(charset='UTF-8')
+    title #{GLOBALS.WebsiteName}
+    block styling
+  body
+    #wrapper
+      include header
+      block body
+      include footer
