@@ -15,7 +15,13 @@ block body
             a(href="#{post.url}")
               span.cool-link #{post.obj.title}
               br
-              span.cool-meta Added TODO
+              span.cool-meta Added #{post.obj.formatted_date}
+      h3 Bird Log
+      ul.small-grid-2
+        li Song Thrush
+        li Crossbill
+    // second column
+    div
       h3 Cool Links
       ul
         li
@@ -28,9 +34,3 @@ block body
             span.cool-link The True Power of Regular Expressions
             br
             span.cool-meta Added 01/02/2019
-    // second column
-    div
-      h3 Bird Log
-      ul.small-grid-2
-        li Song Thrush
-        li Crossbill

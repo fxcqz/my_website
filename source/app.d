@@ -1,3 +1,4 @@
+import std.datetime;
 import std.stdio;
 
 import diet.html;
@@ -5,9 +6,9 @@ import diet.html;
 // TODO load globals from file
 // TODO add bird log
 // TODO add cool links
-// TODO sort posts by date modified and add that to post content
 // TODO add overflow-y to styling for some sections on index (??)
-// TODO support code markup
+// TODO support code markup (use markdown)
+// TODO improve styling of post page
 
 static immutable string SOURCEPATH = "content/";
 static immutable string TARGETPATH = "build/";
@@ -27,7 +28,7 @@ struct Page(T) {
 mixin template Register(T)
 {
   static Page!(T)[] objs;
-  static bool parsed = false;
+  static int parse_count;
 }
 
 struct Index
@@ -36,9 +37,12 @@ struct Index
   Page!(Post)[] posts;
 
   static Index parse(string path)
-  in (Post.parsed)
+  in (Post.parse_count > 0)
   {
-    return Index("b5.re", Post.objs);
+    import std.algorithm : sort;
+    import std.array : array;
+
+    return Index("b5.re", Post.objs.sort!("a.obj.modified > b.obj.modified").array);
   }
 }
 
@@ -46,20 +50,31 @@ struct Post
 {
   string title;
   string[] content;
+  DateTime modified;
 
   mixin Register!Post;
 
-  static Post parse(string path)
-  in (!Post.parsed)
-  out (; Post.parsed)
+  string formatted_date()
   {
-    import std.file : readText;
+    import std.format : format;
+
+    // probably a better way to do this
+    return "%d/%02d/%02d %02d:%02d".format(
+      modified.year, modified.month, modified.day,
+      modified.hour, modified.minute,
+    );
+  }
+
+  static Post parse(string path)
+  out (; Post.parse_count > 0)
+  {
+    import std.file : readText, timeLastModified;
     import std.string : splitLines;
 
+    DateTime modified = cast(DateTime) path.timeLastModified;
     string[] parts = readText(path).splitLines;
-    Post.parsed = true;
-
-    return Post(parts[0], parts[1 .. $]);
+    Post.parse_count += 1;
+    return Post(parts[0], parts[1 .. $], modified);
   }
 }
 
@@ -70,7 +85,14 @@ string[] get_posts(string basepath)
   import std.conv : to;
   import std.file : dirEntries, SpanMode;
 
-  return basepath.dirEntries(SpanMode.breadth).map!(to!string).uniq.array;
+  auto entries = basepath.dirEntries(SpanMode.breadth).map!(to!string).uniq.array;
+
+  if (entries.length == 0) {
+    // special case when there are no posts
+    Post.parse_count = 1;
+  }
+
+  return entries;
 }
 
 string make_basepath(string suffix)
