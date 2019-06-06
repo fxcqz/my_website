@@ -4,7 +4,6 @@ import std.stdio;
 import diet.html;
 
 // TODO load globals from file
-// TODO add overflow-y to styling for some sections on index (??)
 // TODO support code markup (use markdown)
 // TODO improve styling of post page
 

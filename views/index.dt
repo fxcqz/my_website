@@ -23,7 +23,7 @@ block body
     // second column
     div
       h3 Cool Links
-      ul
+      ul(style="overflow-y:auto;max-height:80vh")
         - foreach (link; ctx.links)
           li
             a(href="#{link.url}")
