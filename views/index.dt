@@ -24,13 +24,9 @@ block body
     div
       h3 Cool Links
       ul
-        li
-          a(href="#")
-            span.cool-link Groups - A Primer
-            br
-            span.cool-meta Added 01/02/2019
-        li
-          a(href="#")
-            span.cool-link The True Power of Regular Expressions
-            br
-            span.cool-meta Added 01/02/2019
+        - foreach (link; ctx.links)
+          li
+            a(href="#{link.url}")
+              span.cool-link !{link.title}
+              br
+              span.cool-meta Added #{link.added}

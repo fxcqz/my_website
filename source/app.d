@@ -35,14 +35,20 @@ struct Index
 {
   string heading;
   Page!(Post)[] posts;
+  Link[] links;
 
   static Index parse(string path)
   in (Post.parse_count > 0)
+  in (Link.parsed)
   {
     import std.algorithm : sort;
     import std.array : array;
 
-    return Index("b5.re", Post.objs.sort!("a.obj.modified > b.obj.modified").array);
+    return Index(
+      "b5.re",
+      Post.objs.sort!("a.obj.modified > b.obj.modified").array,
+      Link.links,
+    );
   }
 }
 
@@ -59,9 +65,8 @@ struct Post
     import std.format : format;
 
     // probably a better way to do this
-    return "%d/%02d/%02d %02d:%02d".format(
+    return "%d/%02d/%02d".format(
       modified.year, modified.month, modified.day,
-      modified.hour, modified.minute,
     );
   }
 
@@ -75,6 +80,26 @@ struct Post
     string[] parts = readText(path).splitLines;
     Post.parse_count += 1;
     return Post(parts[0], parts[1 .. $], modified);
+  }
+}
+
+struct Link
+{
+  string title;
+  string url;
+  string added; // string representation of a date
+
+  static Link[] links;
+  static bool parsed = false;
+
+  static void parse(string path)
+  {
+    import std.array : array;
+    import std.csv : csvReader;
+    import std.file : readText;
+
+    Link.links = path.readText.csvReader!Link(',').array;
+    Link.parsed = true;
   }
 }
 
@@ -162,6 +187,8 @@ void main(string[] args)
   foreach (post; get_posts(make_basepath("posts/"))) {
     write_file!(Post, "post.dt")(post);
   }
+
+  Link.parse(make_basepath("links.csv"));
 
   write_file!(Index, "index.dt")(make_basepath("index.txt"));
   write_static();
