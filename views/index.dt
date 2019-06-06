@@ -18,8 +18,8 @@ block body
               span.cool-meta Added #{post.obj.formatted_date}
       h3 Bird Log
       ul.small-grid-2
-        li Song Thrush
-        li Crossbill
+        - foreach (bird; ctx.birds)
+          li #{bird.name}
     // second column
     div
       h3 Cool Links

@@ -4,8 +4,6 @@ import std.stdio;
 import diet.html;
 
 // TODO load globals from file
-// TODO add bird log
-// TODO add cool links
 // TODO add overflow-y to styling for some sections on index (??)
 // TODO support code markup (use markdown)
 // TODO improve styling of post page
@@ -36,6 +34,7 @@ struct Index
   string heading;
   Page!(Post)[] posts;
   Link[] links;
+  Bird[] birds;
 
   static Index parse(string path)
   in (Post.parse_count > 0)
@@ -48,6 +47,7 @@ struct Index
       "b5.re",
       Post.objs.sort!("a.obj.modified > b.obj.modified").array,
       Link.links,
+      Bird.birds,
     );
   }
 }
@@ -100,6 +100,23 @@ struct Link
 
     Link.links = path.readText.csvReader!Link(',').array;
     Link.parsed = true;
+  }
+}
+
+struct Bird
+{
+  string name;
+
+  static Bird[] birds;
+
+  static void parse(string path)
+  {
+    import std.file : readText;
+    import std.string : splitLines;
+
+    foreach (string line; path.readText.splitLines) {
+      Bird.birds ~= Bird(line);
+    }
   }
 }
 
@@ -189,6 +206,7 @@ void main(string[] args)
   }
 
   Link.parse(make_basepath("links.csv"));
+  Bird.parse(make_basepath("birds.txt"));
 
   write_file!(Index, "index.dt")(make_basepath("index.txt"));
   write_static();
