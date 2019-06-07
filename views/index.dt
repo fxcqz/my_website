@@ -20,6 +20,15 @@ block body
       ul.small-grid-2
         - foreach (bird; ctx.birds)
           li #{bird.name}
+      h3 Cool Songs
+      ul
+        - foreach (song; ctx.songs)
+          li
+            a(href="#{song.url}")
+              span.cool-link #{song.name}
+              br
+              span.cool-meta #{song.artist}
+
     // second column
     div
       h3 Cool Links

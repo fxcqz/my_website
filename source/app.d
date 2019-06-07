@@ -34,19 +34,26 @@ struct Index
   Page!(Post)[] posts;
   Link[] links;
   Bird[] birds;
+  Song[] songs;
 
   static Index parse(string path)
   in (Post.parse_count > 0)
-  in (Link.parsed)
   {
-    import std.algorithm : sort;
+    import std.algorithm : map, sort;
     import std.array : array;
+    import std.file : readText;
+    import std.string : splitLines;
 
     return Index(
       "b5.re",
+      // posts
       Post.objs.sort!("a.obj.modified > b.obj.modified").array,
-      Link.links,
-      Bird.birds,
+      // cool links
+      from_csv!Link(make_basepath("links.csv")),
+      // bird log
+      make_basepath("birds.txt").readText.splitLines.map!(Bird).array,
+      // cool songs
+      from_csv!Song(make_basepath("songs.csv")),
     );
   }
 }
@@ -82,41 +89,32 @@ struct Post
   }
 }
 
+T[] from_csv(T)(string path)
+{
+  import std.array : array;
+  import std.csv : csvReader;
+  import std.file : readText;
+
+  return path.readText.csvReader!T(',').array;
+}
+
 struct Link
 {
   string title;
   string url;
   string added; // string representation of a date
+}
 
-  static Link[] links;
-  static bool parsed = false;
-
-  static void parse(string path)
-  {
-    import std.array : array;
-    import std.csv : csvReader;
-    import std.file : readText;
-
-    Link.links = path.readText.csvReader!Link(',').array;
-    Link.parsed = true;
-  }
+struct Song
+{
+  string name;
+  string artist;
+  string url;
 }
 
 struct Bird
 {
   string name;
-
-  static Bird[] birds;
-
-  static void parse(string path)
-  {
-    import std.file : readText;
-    import std.string : splitLines;
-
-    foreach (string line; path.readText.splitLines) {
-      Bird.birds ~= Bird(line);
-    }
-  }
 }
 
 string[] get_posts(string basepath)
@@ -203,9 +201,6 @@ void main(string[] args)
   foreach (post; get_posts(make_basepath("posts/"))) {
     write_file!(Post, "post.dt")(post);
   }
-
-  Link.parse(make_basepath("links.csv"));
-  Bird.parse(make_basepath("birds.txt"));
 
   write_file!(Index, "index.dt")(make_basepath("index.txt"));
   write_static();
