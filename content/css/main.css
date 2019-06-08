@@ -1,0 +1,172 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: lightcoral;
+  color: #eaeaea;
+}
+
+#wrapper {
+  width: 800px;
+  margin: auto;
+}
+
+header {
+  background-color: white;
+  padding: 0.5em;
+  color: slategray;
+  width: 500px;
+  margin: auto;
+  margin-top: 1.25em;
+  text-align: center;
+  box-shadow: 10px 10px;
+}
+
+h3 > abbr {
+  text-decoration: none;
+}
+
+h1, h2, h3 {
+  font-family: "Lucida Console", Monaco, monospace;
+}
+
+h3 {
+  color: white;
+  margin-top: 0.25em;
+  margin-bottom: 0.25em;
+}
+
+footer {
+  color: #222;
+  text-align: right;
+  margin-right: 2em;
+  font-size: 10pt;
+}
+
+footer a {
+  color: #222 !important;
+  text-decoration: none;
+}
+
+#main-1-col {
+  background-color: slategray;
+  margin-top: 1.25em;
+  margin-left: 0.5em;
+  padding: 5px;
+  border: 5px black solid;
+  border-radius: 5px;
+  text-align: justify;
+}
+
+#main-2-col {
+  background-color: slategray;
+  margin-top: 1.25em;
+  margin-left: 0.5em;
+  padding: 5px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1em;
+  border: 5px black solid;
+  border-radius: 5px;
+}
+
+#main-2-col > a:link, #main-2-col > a:visited {
+  color: aquamarine;
+  text-decoration: underline;
+}
+
+#main-2-col > a:hover {
+  color: aquamarine;
+  text-decoration: none;
+}
+
+#main-2-col .cool-meta, #main-1-col .cool-meta {
+  color: #adadad;
+}
+
+#main-2-col ul li {
+  list-style-type: none;
+}
+
+#main-2-col ul li > a:link, a:visited {
+  padding: 3px;
+  display: block;
+  text-decoration: none;
+  color: #eaeaea;
+}
+
+#main-2-col ul li > a:hover {
+  padding: 3px;
+  background-color: #eaeaea;
+  color: slategray;
+}
+
+.paginate {
+  color: #adadad;
+  text-align: center;
+}
+
+.small-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.small-grid-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+article {
+  padding: 0.3rem;
+}
+
+.prettyprint {
+  margin: 0 auto;
+  width: 75%;
+  background-color: #eaeaea;
+  color: slategray;
+  padding: 0.3rem;
+  overflow-x: auto;
+  margin-top: 0.7rem;
+  margin-bottom: 0.7rem;
+}
+
+@media screen and (max-width: 800px) {
+  #wrapper {
+    width: 100%;
+    margin: 0;
+  }
+
+  #main-1-col {
+    margin: 0;
+    margin-top: 1.25em !important;
+  }
+
+  #main-2-col {
+    margin: 0;
+    margin-top: 1.25em !important;
+  }
+
+  .prettyprint {
+    width: 100%;
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  header {
+    width: 100%;
+  }
+
+  #main-2-col {
+    grid-template-columns: 1fr;
+  }
+
+  .prettyprint {
+    width: 100%;
+    padding: 0;
+  }
+}
