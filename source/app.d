@@ -77,7 +77,7 @@ struct Index
 struct Post
 {
   string title;
-  string[] content;
+  string content;
   DateTime modified;
 
   mixin Register!Post;
@@ -95,13 +95,20 @@ struct Post
   static Post parse(string path)
   out (; Post.parse_count > 0)
   {
+    import std.algorithm.iteration : joiner, splitter;
+    import std.conv : to;
     import std.file : readText, timeLastModified;
-    import std.string : splitLines;
+    import std.range : dropOne;
+
+    import dmarkdown : filterMarkdown, MarkdownFlags;
 
     DateTime modified = cast(DateTime) path.timeLastModified;
-    string[] parts = readText(path).splitLines;
     Post.parse_count += 1;
-    return Post(parts[0], parts[1 .. $], modified);
+
+    auto raw_text = path.readText.splitter("\n");
+    string title = raw_text.front;
+    string content = raw_text.dropOne.joiner("\n").to!string;
+    return Post(title, content.filterMarkdown(MarkdownFlags.forumDefault), modified);
   }
 }
 

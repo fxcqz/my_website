@@ -1,6 +1,7 @@
 {
 	"fileVersion": 1,
 	"versions": {
-		"diet-ng": "1.5.0"
+		"diet-ng": "1.5.0",
+		"dmarkdown": "0.3.0"
 	}
 }

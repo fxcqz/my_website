@@ -8,8 +8,6 @@ block body
   #main-1-col
     h2 #{ctx.title}
     p.cool-meta #{ctx.formatted_date}
-    article
-      - foreach (line; ctx.content)
-        p #{line}
+    article !{ctx.content}
     p
       a(href="../index.html") Back home
