@@ -73,6 +73,7 @@ footer a {
   border-radius: 5px;
 }
 
+#main-1-col > p > a:link, #main-1-col > p > a:visited ,
 #main-2-col > a:link, #main-2-col > a:visited {
   color: aquamarine;
   text-decoration: underline;
