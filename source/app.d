@@ -20,8 +20,6 @@ import std.stdio;
 import diet.html;
 
 // TODO load globals from file
-// TODO support code markup (use markdown)
-// TODO improve styling of post page
 
 static immutable string SOURCEPATH = "content/";
 static immutable string TARGETPATH = "build/";
