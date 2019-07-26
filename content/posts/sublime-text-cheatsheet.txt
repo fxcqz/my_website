@@ -1,0 +1,47 @@
+Sublime Text Keybinds Cheatsheet
+
+Keybind | Operation
+------- | ---------
+`ctrl+enter` | Add line after (o)
+`ctrl+shift+enter` | Add line before (O)
+`ctrl+shift+k` | Delete line (dd)
+`ctrl+k ctrl+k` | Delete to EOL (D)
+`ctrl+k ctrl+backspace` | Delete to BOL
+`ctrl+k ctrl+y` | Yank
+`alt+q` | Wrap lines
+`ctrl+j` | Join lines
+`ctrl+shift+d` | Duplicate Line
+`ctrl+shift+{up/down}` | Shift line up/down
+`ctrl+alt+{up/down}` | Select lines (multi-cursor)
+`ctrl+k ctrl+u` | Upper case
+`ctrl+k ctrl+l` | Lower case
+`ctrl+k ctrl+c` | Centre line (zz)
+`ctrl+{PgUp/PgDn}` | Cycle views (tabs) between panes
+`ctrl+shift+l` | Multi-cursor for each line in selection
+`ctrl+shift+j` | Expand selection to indentation (good for python)
+`ctrl+shift+space` | Expand selection to scope
+`ctrl+m` | Move to brackets (repeat to alternate brackets)
+`ctrl+shift+m` | Expand selection to brackets
+`ctrl+q` | Record macro
+`ctrl+shift+q` | Run macro
+`ctrl+r` | Goto symbol
+`ctrl+g` | Goto line number
+`alt+-` | Jump to previous location
+`alt+shift+-` | Jump to next location
+`ctrl+.` | Next hunk
+`ctrl+,` | Previous hunk
+`ctrl+k ctrl+z` | Revert hunk
+`ctrl+k ctrl+/` | Toggle inline diff
+`ctrl+/` | Toggle comment
+`ctrl+shift+/` | Toggle block comment
+`ctrl+b` | Build
+`ctrl+shift+b` | Select and build
+`f9` | Sort lines
+`ctrl+k ctrl+up` | New pane
+`ctrl+k ctrl+down` | Close pane
+`alt+o` | Swap to header file
+`ctrl+shift+[` | Fold
+`ctrl+shift+]` | Unfold
+`ctrl+k+{n}` | Fold by level (special case n=0: unfold all)
+
+Note: ctrl+{c/x/v} apply to lines when there is no selection

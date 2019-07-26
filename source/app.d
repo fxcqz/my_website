@@ -106,7 +106,11 @@ struct Post
     auto raw_text = path.readText.splitter("\n");
     string title = raw_text.front;
     string content = raw_text.dropOne.joiner("\n").to!string;
-    return Post(title, content.filterMarkdown(MarkdownFlags.forumDefault), modified);
+    return Post(
+        title,
+        content.filterMarkdown(MarkdownFlags.forumDefault|MarkdownFlags.supportTables),
+        modified,
+    );
   }
 }
 

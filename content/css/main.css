@@ -135,6 +135,14 @@ article {
   margin-bottom: 0.7rem;
 }
 
+td {
+  padding: 3px;
+}
+
+td:first-child {
+  text-align: right;
+}
+
 @media screen and (max-width: 800px) {
   #wrapper {
     width: 100%;
