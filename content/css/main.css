@@ -124,7 +124,7 @@ article {
   padding: 0.3rem;
 }
 
-.prettyprint {
+pre.prettyprint {
   margin: 0 auto;
   width: 75%;
   background-color: #eaeaea;
