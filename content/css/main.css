@@ -9,6 +9,10 @@ body {
   color: #eaeaea;
 }
 
+ul, ol {
+    margin-left: 1.5rem;
+}
+
 #wrapper {
   width: 800px;
   margin: auto;
