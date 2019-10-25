@@ -5,7 +5,7 @@
 
 body {
   font-family: Arial, Helvetica, sans-serif;
-  background-color: lightcoral;
+  background-color: lightsteelblue;
   color: #eaeaea;
 }
 
@@ -21,7 +21,7 @@ ul, ol {
 header {
   background-color: white;
   padding: 0.5em;
-  color: slategray;
+  color: black;
   width: 500px;
   margin: auto;
   margin-top: 1.25em;
@@ -56,7 +56,7 @@ footer a {
 }
 
 #main-1-col {
-  background-color: slategray;
+  background-color: darkblue;
   margin-top: 1.25em;
   margin-left: 0.5em;
   padding: 5px;
@@ -66,7 +66,7 @@ footer a {
 }
 
 #main-2-col {
-  background-color: slategray;
+  background-color: darkblue;
   margin-top: 1.25em;
   margin-left: 0.5em;
   padding: 5px;
@@ -90,6 +90,10 @@ footer a {
 
 #main-2-col .cool-meta, #main-1-col .cool-meta {
   color: #adadad;
+}
+
+#main-2-col ul {
+    margin-left: 0;
 }
 
 #main-2-col ul li {
@@ -126,13 +130,18 @@ footer a {
 
 article {
   padding: 0.3rem;
+  line-height: 1.4rem;
+}
+
+article p {
+    margin-bottom: 0.7rem;
 }
 
 pre.prettyprint {
   margin: 0 auto;
   width: 75%;
-  background-color: #eaeaea;
-  color: slategray;
+  background-color: yellow;
+  color: black;
   padding: 0.3rem;
   overflow-x: auto;
   margin-top: 0.7rem;

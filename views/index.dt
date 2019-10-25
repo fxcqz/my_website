@@ -39,3 +39,10 @@ block body
               span.cool-link !{link.title}
               br
               span.cool-meta Added #{link.added}
+
+      h3 Other Stuff
+        ul.small-grid-2(style="text-align:center;align-items:center;")
+          a(href="https://neovim.io/")
+            img(src="images/neovim-mark.svg", width="50%")
+          a(href="https://dlang.org/")
+            img(src="images/dlogo.png", width="50%")

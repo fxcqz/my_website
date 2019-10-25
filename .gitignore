@@ -16,3 +16,4 @@ b5-test-*
 
 build/
 *.png
+*.svg
