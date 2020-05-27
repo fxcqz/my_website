@@ -189,6 +189,26 @@ void write_file(T, string TemplateFile)(string src_path)
   }
 }
 
+void minify_css(string filename)
+{
+  import std.file : readText, fwrite = write;
+  import std.array : replace;
+
+  auto data = filename
+      .readText
+      .replace("\n", "")
+      .replace("{  ", "{")
+      .replace("{  ", "{")
+      .replace("}  ", "}")
+      .replace(" {", "{")
+      .replace(";  ", ";")
+      .replace(";  ", ";")
+      .replace(": ", ":")
+      .replace(": ", ":")
+      .replace(";}", "}");
+  filename.fwrite(data);
+}
+
 void write_static()
 {
   import std.file : copy, dirEntries, exists, mkdirRecurse, SpanMode;
@@ -199,6 +219,7 @@ void write_static()
     string target_css_path = buildPath(TARGETPATH, "css", "main.css");
     mkdirRecurse(dirName(target_css_path));
     copy(src_css_path, target_css_path);
+    target_css_path.minify_css();
   }
 
   string src_img_path = buildPath(SOURCEPATH, "images");
