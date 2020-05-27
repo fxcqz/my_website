@@ -11,7 +11,7 @@ struct State
     // ...
 }
 
-__shared static State STATE;
+__gshared static State STATE;
 ```
 
 Now across any threads, we can access our state. But we might get race conditions so the lazy way is to use `@property` methods and put everything in synchronized blocks. Luckily D can help us live up to our true lazy potential with [template mixins](https://dlang.org/spec/template-mixin.html). These will just let us drop the body of the mixin template into our struct. Combine that with the `mixin` function which will parse a string at compile time and output code and we get the full power of stringly typed programming.

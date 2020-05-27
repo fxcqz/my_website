@@ -5,7 +5,7 @@
 
 body {
   font-family: Arial, Helvetica, sans-serif;
-  background-color: lightsteelblue;
+  background-color: #403F3A;
   color: #eaeaea;
 }
 
@@ -56,7 +56,7 @@ footer a {
 }
 
 #main-1-col {
-  background-color: darkblue;
+  background-color: #807E74;
   margin-top: 1.25em;
   margin-left: 0.5em;
   padding: 5px;
@@ -65,8 +65,12 @@ footer a {
   text-align: justify;
 }
 
+#main-1-col h2 {
+    text-align: left;
+}
+
 #main-2-col {
-  background-color: darkblue;
+  background-color: #807E74;
   margin-top: 1.25em;
   margin-left: 0.5em;
   padding: 5px;
@@ -77,19 +81,18 @@ footer a {
   border-radius: 5px;
 }
 
-#main-1-col > p > a:link, #main-1-col > p > a:visited ,
-#main-2-col > a:link, #main-2-col > a:visited {
-  color: aquamarine;
+p a:link, p a:visited {
+  color: yellow;
   text-decoration: underline;
 }
 
-#main-2-col > a:hover {
-  color: aquamarine;
+p a:hover {
+  color: yellow;
   text-decoration: none;
 }
 
 #main-2-col .cool-meta, #main-1-col .cool-meta {
-  color: #adadad;
+  color: #B3AE91;
 }
 
 #main-2-col ul {
@@ -104,13 +107,13 @@ footer a {
   padding: 3px;
   display: block;
   text-decoration: none;
-  color: #eaeaea;
+  color: #CFFBFF;
 }
 
 #main-2-col ul li > a:hover {
   padding: 3px;
   background-color: #eaeaea;
-  color: slategray;
+  color: #403F3A;
 }
 
 .paginate {
@@ -140,12 +143,14 @@ article p {
 pre.prettyprint {
   margin: 0 auto;
   width: 75%;
-  background-color: yellow;
-  color: black;
+  background-color: #fffec9;
+  color: #292929;
   padding: 0.3rem;
   overflow-x: auto;
   margin-top: 0.7rem;
   margin-bottom: 0.7rem;
+  font-weight: bold;
+  line-height: 1.1rem;
 }
 
 td {
